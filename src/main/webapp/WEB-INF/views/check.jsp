@@ -209,9 +209,9 @@
 							</tr>
 							<tr>
 								<td class="table-primary text-center fw-bold" >예약기관명</td>
-								<td>${TESTs.hspName}</td>
-							</c:forEach>	
+								<td>${TESTs.hspName}</td>								
 							</tr>
+							</c:forEach>
 							
 							<tr>							
 							<c:forEach items="${checkList }" var="TEST">
