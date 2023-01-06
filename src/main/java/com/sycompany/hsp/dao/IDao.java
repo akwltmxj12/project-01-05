@@ -106,4 +106,14 @@ public interface IDao { // select문만 반환타입있고 나머지, Insert, Up
 	public List<HspInfoDto> HspInfAllList();
 	
 	
+	
+	
+	
+	
+	
+	// 이상현상 저장
+	public int sideinfo(String sideEffect);
+	
+	
+	
 }

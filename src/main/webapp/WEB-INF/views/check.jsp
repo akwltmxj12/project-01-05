@@ -151,37 +151,35 @@
 									<th class="text-center" rowspan="2" style="text-align : center; vertical-align : middle;">예약시간</th>
 									<th class="text-center" colspan="2">예약자 정보</th>
 									<th class="text-center" colspan="4">접종자정보</th>
-								</tr>
-								
-								<tr>
+								</tr>								
+								<tr>								
 									<th class="text-center">성명</th>
 									<th class="text-center">연락처</th>
 									<th class="text-center">성명</th>
 									<th class="text-center">연락처</th>
 									<th class="text-center">주민등록번호</th>
-									<th class="text-center">접종차수</th>
+									<th class="text-center">접종차수</th>								
 								</tr>
 							</thead>														
 							<!-- 반복분으로 돌려야 함!! -->
-							<c:forEach items="${checklists }" var="TEST">
-							<tbody>
-								<tr>
-									<td>
-										<c:out value="${fn:substring(TEST.appDate,0,10) }"></c:out>
-									</td>
-									<td><c:out value="${fn:substring(TEST.appTime,10,16) }"></c:out></td>
-									<td>${TEST.appName }</td>
-									<td>${TEST.appTel }</td>
-									<td>${TEST.mName}</td>
-									<td>${TEST.mTel }</td>
-									<td>${TEST.mJumin1 } - ${TEST.mJumin2 }</td>
-									<td>${TEST.injecNum }</td>
-								</tr>
-
-			
-							</c:forEach>
+							
+							
+							<tbody>						
+								<tr onClick="location.href='checkinfoNext'" style="cursor:hand">
+								 	<c:forEach items="${checklists }" var="TEST">					
+										<td><c:out value="${fn:substring(TEST.appDate,0,10) }"></c:out></td>
+										<td><c:out value="${fn:substring(TEST.appTime,10,16) }"></c:out></td>
+										<td>${TEST.appName }</td>
+										<td>${TEST.appTel }</td>
+										<td>${TEST.mName}</td>
+										<td>${TEST.mTel }</td>
+										<td>${TEST.mJumin1 } - ${TEST.mJumin2 }</td>
+										<td>${TEST.injecNum }</td>	
+									</c:forEach>							
+								</tr>	
+																					
 							<!-- 반복분으로 돌려야 함!! -->
-							</tbody>
+							</tbody>			
 						</table>
 					</div>
 				</div>
@@ -258,8 +256,8 @@
 			<div class="card border-dark">
 				<div class="card-body">
 				▶ 접종 후 7일이내 이상반응
-					<form>
-						<button type="button" style="float: right;"  class="btn btn-primary btn-sm">저장</button>
+					<form action="sideinfos">
+						<button type="submit" name="memobtn" style="float: right;"  class="btn btn-primary btn-sm">저장</button>
 						<table style="width: 100%;" class="table table-bordered align-top">
 							<thead>	
 								<tr>

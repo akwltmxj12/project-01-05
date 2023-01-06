@@ -224,6 +224,14 @@
 
 
 
+
+
+
+
+
+
+
+
 <select id="DayinfoList" resultType="com.sycompany.hsp.dto.AppointmentInfoDto">
 	SELECT * FROM appointmentinfo 
 </select>
@@ -231,6 +239,10 @@
 <select id="HspInfAllList" resultType="com.sycompany.hsp.dto.HspInfoDto">
 	SELECT * FROM HspInfo 
 </select>  
+  
+  
+  
+
   
   
  </mapper>
