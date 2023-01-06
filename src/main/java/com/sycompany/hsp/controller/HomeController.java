@@ -944,6 +944,21 @@ public class HomeController {
 			IDao dao = sqlSession.getMapper(IDao.class);
 			
 			String jumin2TEST = request.getParameter("mJumin2");
+			
+			String todate = request.getParameter("todate");
+			String dateapp = request.getParameter("dateApp");
+			
+			String selectop1 = request.getParameter("selectOP1");
+			String selectop2 = request.getParameter("selectOP4");
+			
+			String mnames = request.getParameter("mnames");
+			String mjumins1 = request.getParameter("mjumins1");
+			String mjumins2 = request.getParameter("mjumins2");
+			
+			
+			
+			
+			
 			System.out.print(jumin2TEST);
 
 			
