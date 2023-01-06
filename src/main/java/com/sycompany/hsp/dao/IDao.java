@@ -99,15 +99,15 @@ public interface IDao { // select문만 반환타입있고 나머지, Insert, Up
 	public List<AppointmentInfoDto> namedSearch(String mName, String mJumin1, String mJumin2);
 	
 	
-	//예방접종 조회후 리스트 불러오기
+	//예방접종 조회후 리스트 불러오기 -> 내역확인
 	public List<AppointmentInfoDto> DayinfoList();
 
-	//
+	//예방접종 조회후 리스트 불러오기 -> 내역확인
 	public List<HspInfoDto> HspInfAllList();
 	
 	
-	
-	
+	// 클릭시 내역확인을 불러오기위한 키 검색
+	public List<AppointmentInfoDto> suchinfotest(String jumin2test);
 	
 	
 	

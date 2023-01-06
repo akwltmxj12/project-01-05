@@ -164,9 +164,9 @@
 							<!-- 반복분으로 돌려야 함!! -->
 							
 							
-							<tbody>						
-								<tr onClick="location.href='checkinfoNext'" style="cursor:hand">
-								 	<c:forEach items="${checklists }" var="TEST">					
+							<tbody>	
+								<c:forEach items="${checklists }" var="TEST">					
+								<tr onClick="location.href='checkinfoNext?${TEST.mJumin2 }'" style="cursor:hand">								 					
 										<td><c:out value="${fn:substring(TEST.appDate,0,10) }"></c:out></td>
 										<td><c:out value="${fn:substring(TEST.appTime,10,16) }"></c:out></td>
 										<td>${TEST.appName }</td>
@@ -174,10 +174,9 @@
 										<td>${TEST.mName}</td>
 										<td>${TEST.mTel }</td>
 										<td>${TEST.mJumin1 } - ${TEST.mJumin2 }</td>
-										<td>${TEST.injecNum }</td>	
-									</c:forEach>							
+										<td>${TEST.injecNum }</td>							
 								</tr>	
-																					
+									</c:forEach>												
 							<!-- 반복분으로 돌려야 함!! -->
 							</tbody>			
 						</table>

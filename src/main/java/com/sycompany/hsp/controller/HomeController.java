@@ -943,33 +943,14 @@ public class HomeController {
 		
 			IDao dao = sqlSession.getMapper(IDao.class);
 			
-			String todate = request.getParameter("todate").toString();
-			System.out.println(todate);
+			String jumin2TEST = request.getParameter("mJumin2");
 			
-			String dateapp = request.getParameter("dateApp").toString();
-			System.out.println(dateapp);
+			List<AppointmentInfoDto> test02 = dao.suchinfotest(jumin2TEST);
 			
-			String selectop1 = request.getParameter("selectOP1").toString();
-			System.out.println(selectop1);
+			model.addAttribute("test02", test02);
 			
-			String selectop2 = request.getParameter("selectOP4").toString();
-			System.out.println(selectop2);
-			
-			
-			String mnames = request.getParameter("mnames").toString();
-			System.out.println(mnames);
-			String mjumins1 = request.getParameter("mjumins1").toString();
-			System.out.println(mjumins1);
-			String mjumins2 = request.getParameter("mjumins2").toString();
-			System.out.println(mjumins2);
-			
-			List<AppointmentInfoDto> checklists = dao.DayinfoSearch(todate, dateapp, selectop1, selectop2, mnames, mjumins1, mjumins2);			
-			model.addAttribute("checklists", checklists);
-			
-			
-			
-			if(checklists.isEmpty()) {
-			// checkList 와 hspAllinfo 는 내역확인에 들어간다.
+			if(!test02.isEmpty()) {
+				
 			List<AppointmentInfoDto> checkList = dao.DayinfoList();
 			model.addAttribute("checkList", checkList);
 			
@@ -981,7 +962,6 @@ public class HomeController {
 			else {
 				return "check";	
 			}
-			
 			
 	}	
 	

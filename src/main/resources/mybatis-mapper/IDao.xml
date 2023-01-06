@@ -222,7 +222,11 @@
 
 
 
-
+  <select id="suchinfotest" resultType="com.sycompany.hsp.dto.AppointmentInfoDto">
+	    select *
+	      from APPOINTMENTINFO
+	      WHERE mjumin2 = #{param1}
+  </select>
 
 
 
