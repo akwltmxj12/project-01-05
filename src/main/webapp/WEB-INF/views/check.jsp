@@ -166,7 +166,7 @@
 							
 							<tbody>	
 								<c:forEach items="${checklists }" var="TEST">					
-								<tr onClick="location.href='checkinfoNext?${TEST.mJumin2 }'" style="cursor:hand">								 					
+								<tr onClick="location.href='checkinfoNext?mJumin2=${TEST.mJumin2 }'" style="cursor:hand">								 					
 										<td><c:out value="${fn:substring(TEST.appDate,0,10) }"></c:out></td>
 										<td><c:out value="${fn:substring(TEST.appTime,10,16) }"></c:out></td>
 										<td>${TEST.appName }</td>

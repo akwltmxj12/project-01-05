@@ -944,19 +944,23 @@ public class HomeController {
 			IDao dao = sqlSession.getMapper(IDao.class);
 			
 			String jumin2TEST = request.getParameter("mJumin2");
+			System.out.print(jumin2TEST);
+
 			
-			List<AppointmentInfoDto> test02 = dao.suchinfotest(jumin2TEST);
-			
-			model.addAttribute("test02", test02);
-			
-			if(!test02.isEmpty()) {
+			if(jumin2TEST != null){
 				
-			List<AppointmentInfoDto> checkList = dao.DayinfoList();
-			model.addAttribute("checkList", checkList);
-			
-			List<HspInfoDto> hspAllinfo = dao.HspInfAllList();
-			model.addAttribute("hspAllinfo", hspAllinfo);
-			
+				List<AppointmentInfoDto> test02 = dao.suchinfotest(jumin2TEST);
+				
+				model.addAttribute("test02", test02);	
+					
+					
+					
+				List<AppointmentInfoDto> checkList = dao.DayinfoList();
+				model.addAttribute("checkList", checkList);
+				
+				List<HspInfoDto> hspAllinfo = dao.HspInfAllList();
+				model.addAttribute("hspAllinfo", hspAllinfo);
+				
 			return "check";	
 			}
 			else {
