@@ -185,13 +185,42 @@
    		WHERE hspid=#{param1}
   </select>
   
-  <!-- 예방접종 조회결과 가져오기 -->
+  <!-- 예방접종 조회결과 가져오기 전체 -->
   <select id="DayinfoSearch" resultType="com.sycompany.hsp.dto.AppointmentInfoDto">
-select *
-      from appointmentinfo
-      where appdate <![CDATA[>=]]> TO_DATE(#{param1},'YYYY-MM-DD')
-      and appdate <![CDATA[<]]> TO_DATE(#{param2},'YYYY-MM-DD')+1 
+	    select *
+	      from APPOINTMENTINFO
+	      WHERE appdate BETWEEN TO_DATE(#{param1}, 'YYYY-MM-DD') 
+                   AND TO_DATE(#{param2}, 'YYYY-MM-DD')    
+           AND	apptime BETWEEN TO_DATE(#{param3}, 'HH24:MI') 
+                   AND TO_DATE(#{param4}, 'HH24:MI')    
+		  AND mname = #{param5}
+		  AND mjumin1 = #{param6}
+		  AND mjumin2 = #{param7}
   </select>	
+
+
+
+  <!-- 예방접종 조회결과 가져오기 날짜-시간 -->
+  <select id="DaySearch" resultType="com.sycompany.hsp.dto.AppointmentInfoDto">
+	    select *
+	      from APPOINTMENTINFO
+	      WHERE appdate BETWEEN TO_DATE(#{param1}, 'YYYY-MM-DD') 
+                   AND TO_DATE(#{param2}, 'YYYY-MM-DD')    
+           AND	apptime BETWEEN TO_DATE(#{param3}, 'HH24:MI') 
+                   AND TO_DATE(#{param4}, 'HH24:MI')    
+  </select>	
+
+
+  <!-- 예방접종 조회결과 가져오기 이름-조회 -->
+  <select id="namedSearch" resultType="com.sycompany.hsp.dto.AppointmentInfoDto">
+	    select *
+	      from APPOINTMENTINFO
+	      WHERE mname = #{param1}
+		  AND mjumin1 = #{param2}
+		  AND mjumin2 = #{param3}
+  </select>	
+
+
 
 
 

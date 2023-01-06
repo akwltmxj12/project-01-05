@@ -851,46 +851,100 @@ public class HomeController {
 
 	
 	
-	@PostMapping("/check")
-	public String checkInfo(HttpServletResponse response, HttpServletRequest request, HttpSession session, Model model) {
+//	@PostMapping("/check")	*01.06*
+	@RequestMapping("/checkok")	
+	public String checkok(HttpServletResponse response, HttpServletRequest request, HttpSession session, Model model) {
 		
-					
-		String todate = request.getParameter("todate");
-		String dateApp = request.getParameter("dateApp");
+			
 		
 		
-//		
-//		String selop1 = request.getParameter("selectOP1");
-//		String selop2 = request.getParameter("selectOP4");
-//		
-//		String mnames = request.getParameter("mnames");
-//		String mjumins1 = request.getParameter("mjumins1");
-//		String mjumins2 = request.getParameter("mjumins2");
+		String todate = request.getParameter("todate").toString();
+		String dateapp = request.getParameter("dateApp").toString();
+		
+		String selectop1 = request.getParameter("selectOP1").toString();
+		String selectop2 = request.getParameter("selectOP4").toString();
+		
+		String mnames = request.getParameter("mnames").toString();
+		String mjumins1 = request.getParameter("mjumins1").toString();
+		String mjumins2 = request.getParameter("mjumins2").toString();
+		
+		
+		
+		
+		System.out.println(todate);
+		System.out.println(dateapp);
+		System.out.println(selectop1);
+		System.out.println(selectop2);
+		
+		System.out.println(mnames);
+		System.out.println(mjumins1);
+		System.out.println(mjumins2);
+		
 		
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		List<AppointmentInfoDto> checkDay = dao.DayinfoSearch(todate, dateApp);
 
-		model.addAttribute("todate", checkDay);
-		model.addAttribute("dateApp", checkDay);
+		// 4개 정확히 입력
+		if(todate != null && dateapp != null && selectop1 != null &&  selectop2 != null && mnames != null && mjumins1 != null && mjumins2 != null) {	//if문안에다
+			List<AppointmentInfoDto> checklists = dao.DayinfoSearch(todate, dateapp, selectop1, selectop2, mnames, mjumins1, mjumins2);			
+			model.addAttribute("checklists", checklists);
+			
+			
+			// checkList 와 hspAllinfo 는 내역확인에 들어간다.
+			List<AppointmentInfoDto> checkList = dao.DayinfoList();
+			model.addAttribute("checkList", checkList);
+			
+			List<HspInfoDto> hspAllinfo = dao.HspInfAllList();
+			model.addAttribute("hspAllinfo", hspAllinfo);
+			return "check";
+			}
+		
+		// 날짜-시간  입력
+		else if(todate.isEmpty() && dateapp.isEmpty() && selectop1.isEmpty() &&  selectop2.isEmpty()) {
+			List<AppointmentInfoDto> daytime = dao.DaySearch(todate, dateapp, selectop1, selectop2);			
+			model.addAttribute("daytime", daytime);
+			System.out.println(daytime);
+			
+			
+			List<AppointmentInfoDto> checkList = dao.DayinfoList();
+			model.addAttribute("checkList", checkList);
+			
+			List<HspInfoDto> hspAllinfo = dao.HspInfAllList();
+			model.addAttribute("hspAllinfo", hspAllinfo);
+			return "check";
+			
+		}
+		
+		// 이름-주민 입력
+		else if(todate.equals("") && dateapp.equals("") && selectop1.equals("시간선택") &&  selectop2.equals("시간선택") && mnames != null && mjumins1 != null && mjumins2 != null) {
+			List<AppointmentInfoDto> namedSch = dao.namedSearch(mnames, mjumins1, mjumins2);			
+			model.addAttribute("namedSch", namedSch);
+			System.out.println(namedSch);
+			
+			
+			List<AppointmentInfoDto> checkList = dao.DayinfoList();
+			model.addAttribute("checkList", checkList);
+			
+			List<HspInfoDto> hspAllinfo = dao.HspInfAllList();
+			model.addAttribute("hspAllinfo", hspAllinfo);
+			return "check";
+			
+		}
+		
 	
+			else {
+				return "check";
+			}
 		
-		
-		
-		List<AppointmentInfoDto> checkList = dao.DayinfoList();
-		
-		model.addAttribute("checkList", checkList);
-
-				
-		
-		List<HspInfoDto> hspAllinfo = dao.HspInfAllList();
-		
-		model.addAttribute("hspAllinfo", hspAllinfo);
 
 
 		
-		return "check";
+		
+		
+		
+
+		
+		
 	}
 	
 }

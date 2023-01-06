@@ -87,8 +87,17 @@ public interface IDao { // select문만 반환타입있고 나머지, Insert, Up
 	public int hspVaccineHold(String hspId,  String vaccineName, String vaccineCompany, String vaccineRcvDay, String vaccineDscDay, int vaccineHold);
 	
 	
-	//예방접종 조회 조회			*추가 01-04*
-	public List<AppointmentInfoDto> DayinfoSearch(String StartDate, String EndDate);
+	//예방접종 조회 조회	 전체		*추가 01-04*
+	public List<AppointmentInfoDto> DayinfoSearch(String StartDate, String EndDate, String Strtime, String Endtime, String mName, String mJumin1, String mJumin2);
+	
+	
+	//예방접종 조회 조회	 날짜-시간	*추가 01-04*
+	public List<AppointmentInfoDto> DaySearch(String StartDate, String EndDate, String Strtime, String Endtime);
+	
+	
+	//예방접종 조회 조회	 이름-주민		*추가 01-04*
+	public List<AppointmentInfoDto> namedSearch(String mName, String mJumin1, String mJumin2);
+	
 	
 	//예방접종 조회후 리스트 불러오기
 	public List<AppointmentInfoDto> DayinfoList();

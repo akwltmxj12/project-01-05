@@ -36,7 +36,7 @@
 <!-- 예약조회 검색기능 시작 -->
 <table style="width: 100%; background-color: #e2e3e5; width: 1500px; height: 790.125px">
 	
-<form method="post">
+<form action="checkok">
 	<!-- 검색기능 제목 시작 -->
 	<tr>
 		<td colspan="3"><br> &nbsp; 
@@ -68,7 +68,7 @@
 						 	<div>ο 조회기간</div>
 						</td>
 						<td>
-							<input type="date" id="todate" name="todate" required> ~ <input type="date" id="dateApp" name="dateApp" required>
+							<input type="date" id="todate" name="todate"> ~ <input type="date" id="dateApp" name="dateApp">
 						</td>
 						<td>ο 접종시간</td>
 						<td>
@@ -161,10 +161,9 @@
 									<th class="text-center">주민등록번호</th>
 									<th class="text-center">접종차수</th>
 								</tr>
-							</thead>
-							
+							</thead>														
 							<!-- 반복분으로 돌려야 함!! -->
-							<c:forEach items="${checkList }" var="TEST">
+							<c:forEach items="${checklists }" var="TEST">
 							<tbody>
 								<tr>
 									<td>
@@ -201,7 +200,7 @@
 					▶ 내역 관리
 						<table style="width: 100%;" class="table table-bordered" cellpadding="2">
 						<tr>
-						<c:forEach items="${hspAllinfo }" var="TESTs">							
+						<c:forEach items="${hspAllinfo }" var="TESTs" varStatus="hspKind"  end="1">							
 								<td class="table-primary text-center fw-bold">등록구분</td>
 								<td>
 									${TESTs.hspKind}
@@ -211,29 +210,29 @@
 								<td class="table-primary text-center fw-bold" >예약기관명</td>
 								<td>${TESTs.hspName}</td>								
 							</tr>
-							</c:forEach>
+						</c:forEach>
 							
 							<tr>							
-							<c:forEach items="${checkList }" var="TEST">
+							<c:forEach items="${checkList }" var="TEST" varStatus="appName" begin="1" end="1">
 								<td class="table-primary text-center fw-bold">예약자 정보</td>
 								<td>
-									성명: ${TESTs.appName}
-									연락처: ${TESTs.appTel}
-								</td>
+									성명: ${TEST.appName}
+									연락처: ${TEST.appTel}
+								</td>								
 							</tr>
-							<tr>
+							<tr>								
 								<td class="table-primary text-center fw-bold">피접종자 정보</td>
 								<td>
 								
-								성명: ${TESTs.mName}
+								성명: ${TEST.mName}
 								
-								주민등록번호: ${TESTs.mJumin1}-${TESTs.mJumin2}
+								주민등록번호: ${TEST.mJumin1}-${TEST.mJumin2}
 								
-								</td>
+								</td>							
 							</tr>
-							<tr>
+							<tr>								
 								<td class="table-primary text-center fw-bold">접종차수</td>
-								<td>${TESTs.injecNum}</td>
+								<td>${TEST.injecNum}</td>
 							</c:forEach>	
 							</tr>						
 					 	</table>
